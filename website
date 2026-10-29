@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Tip of my Tongue</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap">
+<style>
+:root{--bg:#F3F5FA;--surface:#E6EAF4;--ink:#14213D;--muted:#4A5675;--accent:#C72C5A;--sun:#FFD166;--rule:#C9D0E2;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0F1730;--surface:#18234A;--ink:#EAEEF9;--muted:#A6B1D1;--accent:#FF7094;--rule:#2B3868}}
+:root[data-theme="dark"]{--bg:#0F1730;--surface:#18234A;--ink:#EAEEF9;--muted:#A6B1D1;--accent:#FF7094;--rule:#2B3868}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 1.125rem/1.7 "Source Serif 4",Georgia,serif}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+[hidden]{display:none!important}
+.wrap{max-width:46rem;margin:0 auto;padding:0 1.25rem}
+h1,h2,h3,nav{font-family:"Bricolage Grotesque","Helvetica Neue",Arial,sans-serif}
+header{border-bottom:1px solid var(--rule)}
+nav{display:flex;align-items:center;gap:1.25rem;padding:.9rem 0;flex-wrap:wrap;font-weight:500;font-size:1rem}
+nav .brand{display:flex;align-items:center;gap:.6rem;font-weight:800;text-decoration:none;margin-right:auto}
+nav .brand svg{width:2.4rem;height:2.4rem}
+nav a:not(.brand){text-decoration:none;color:var(--muted);padding:.1rem 0}
+nav a:not(.brand):hover{color:var(--ink)}
+nav a[aria-current="page"]{color:var(--ink);border-bottom:2px solid var(--accent)}
+.hero{padding:4.5rem 0 3rem}
+h1{font-size:clamp(2.6rem,9vw,4.6rem);line-height:1.02;letter-spacing:-.02em;font-weight:800;margin:0 0 1.5rem}
+.page-title{font-size:clamp(2.2rem,7vw,3.2rem);margin:3rem 0 1.5rem}
+.blank{font:inherit;color:var(--accent);background:none;border:0;border-bottom:.09em dashed var(--accent);padding:0 .1em;cursor:pointer;min-width:2.2em;text-align:left;letter-spacing:inherit}
+.dots span{display:inline-block;animation:b 1.4s infinite}
+.dots span:nth-child(2){animation-delay:.2s}.dots span:nth-child(3){animation-delay:.4s}
+@keyframes b{0%,60%,100%{opacity:.25}30%{opacity:1}}
+@media (prefers-reduced-motion:reduce){.dots span{animation:none}}
+.lede{max-width:34rem;color:var(--muted);margin:0 0 1rem}
+.hint{font-size:.95rem;color:var(--muted);font-style:italic}
+section{padding:2.5rem 0;border-top:1px solid var(--rule)}
+.view{padding-bottom:3rem}
+h2{font-size:1.7rem;letter-spacing:-.01em;margin:0 0 1.2rem}
+dl{margin:0}
+dt{font-family:"Bricolage Grotesque",sans-serif;font-weight:700;font-size:1.2rem;margin-top:1.4rem}
+dt:first-child{margin-top:0}
+dd{margin:.15rem 0 0;color:var(--muted);max-width:36rem}
+.feed{list-style:none;padding:0;margin:0}
+.feed li{display:flex;gap:1rem;align-items:baseline;padding:.8rem 0;border-bottom:1px solid var(--rule)}
+.feed li:last-child{border-bottom:0}
+.feed .len{font:700 .9rem "Bricolage Grotesque",sans-serif;background:var(--sun);color:#14213D;border-radius:99px;padding:.05rem .7rem;white-space:nowrap}
+.host{display:grid;gap:1rem;margin-top:2rem}
+.host p{margin:0}
+.photo{width:8rem;height:8rem;border-radius:50%;background:var(--surface);border:1px solid var(--rule);display:grid;place-items:center;color:var(--muted);font:500 .85rem "Bricolage Grotesque",sans-serif;text-align:center}
+@media (min-width:40rem){.host{grid-template-columns:8rem 1fr;gap:2rem}}
+.fill{display:inline-block;min-width:6.5em;border-bottom:2px dashed var(--accent);color:var(--muted);font-style:italic;text-align:center;padding:0 .3em;line-height:1.3}
+.follow{display:flex;gap:.75rem;flex-wrap:wrap}
+.follow a{font:700 1rem "Bricolage Grotesque",sans-serif;text-decoration:none;padding:.6rem 1.2rem;border-radius:.4rem;border:2px solid var(--ink)}
+.follow a:first-child{background:var(--ink);color:var(--bg)}
+.follow a:hover{border-color:var(--accent)}
+.grid{display:grid;gap:1.25rem;grid-template-columns:repeat(auto-fill,minmax(14rem,1fr));margin-bottom:1rem}
+.grid.wide{grid-template-columns:repeat(auto-fill,minmax(19rem,1fr))}
+.vid a{display:inline-block;margin-top:.5rem;font:700 .95rem "Bricolage Grotesque",sans-serif}
+.frame{position:relative;width:100%;background:var(--surface);border:1px solid var(--rule);border-radius:.5rem;overflow:hidden}
+.frame.short{aspect-ratio:9/16}.frame.long{aspect-ratio:16/9}
+.frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.more{font:700 1rem "Bricolage Grotesque",sans-serif}
+footer{padding:2rem 0 3rem;color:var(--muted);font-size:.95rem;border-top:1px solid var(--rule)}
+</style>
+</head>
+<body>
+<header><div class="wrap"><nav aria-label="Main">
+<a class="brand" href="#home"><svg viewBox="0 0 200 200" aria-hidden="true">
+  <rect width="200" height="200" rx="44" fill="#14213D"/>
+  <g transform="translate(8 -8)">
+    <path d="M92 94C74 94 68 78 78 68C72 56 84 44 96 48C100 36 120 32 128 42C140 34 160 42 158 56C170 60 172 78 160 86C160 98 146 102 136 98C128 104 108 104 100 98C96 98 94 96 92 94Z" fill="#FFD166"/>
+    <g fill="none" stroke="#C98F00" stroke-width="3" stroke-linecap="round">
+      <path d="M122 40C118 56 126 66 120 78"/>
+      <path d="M90 58C98 54 102 60 110 56"/>
+      <path d="M134 52C142 52 146 60 152 58"/>
+      <path d="M140 76C146 74 150 80 156 76"/>
+    </g>
+  </g>
+  <rect x="30" y="62" width="104" height="70" rx="20" fill="#FFFFFF"/>
+  <path d="M54 128v12a16 16 0 0 0 32 0v-12z" fill="#E5446D"/>
+  <path d="M70 134v14" stroke="#B3294F" stroke-width="3" stroke-linecap="round"/>
+  <circle cx="58" cy="97" r="7" fill="#14213D"/>
+  <circle cx="82" cy="97" r="7" fill="#14213D"/>
+  <circle cx="106" cy="97" r="7" fill="#14213D"/>
+</svg> Tip of my Tongue</a>
+<a href="#home" data-nav="home">Home</a><a href="#series" data-nav="series">Series</a><a href="#videos" data-nav="videos">Videos</a><a href="#follow" data-nav="follow">Follow</a>
+</nav></div></header>
+
+<main class="wrap">
+<div class="view" id="v-home">
+<div class="hero">
+<h1>It’s on the tip of my <button class="blank" id="blank" aria-live="polite" aria-label="Reveal the word. Press to try another language.">tongue</button><span class="dots" aria-hidden="true"><span>.</span><span>.</span><span>.</span></span></h1>
+<p class="lede">Short videos on how bilinguals remember, forget, and almost say it. Real memory research, one minute at a time, from grad students who study how we remember written and spoken bilingual discourse.</p>
+<p class="hint">Tap the dashed word to say it in another language.</p>
+</div>
+<section>
+<h2>Video highlights</h2>
+<div class="grid" id="highlights"></div>
+<p><a class="more" href="#videos">See all videos</a></p>
+</section>
+<section>
+<h2>About</h2>
+<p>We started Tip of my Tongue to share what the science says about bilingual memory, and to be honest about what grad school is like while we figure it out.</p>
+<div class="host">
+<div class="photo">Host photo</div>
+<p>Hi, I’m <span class="fill">your name</span>, a <span class="fill">year</span> PhD student in <span class="fill">department</span> at <span class="fill">university</span>. I study <span class="fill">your research topic</span>. The language I lose words in most is <span class="fill">language</span>, and the last word stuck on the tip of my tongue was <span class="fill">word</span>.</p>
+</div>
+<div class="host">
+<div class="photo">Co-host photo</div>
+<p>And I’m <span class="fill">co-host name</span>, a <span class="fill">year</span> PhD student in <span class="fill">department</span> at <span class="fill">university</span>. I study <span class="fill">research topic</span>. My favorite word in my second language is <span class="fill">word</span>, and I always forget <span class="fill">something you forget</span>.</p>
+</div>
+</section>
+</div>
+
+<div class="view" id="v-series" hidden>
+<h1 class="page-title">Series</h1>
+<dl>
+<dt>On the Tip</dt><dd>One word-retrieval puzzle per video: why a word you know vanishes, and what your two languages have to do with it.</dd>
+<dt>Read vs. Heard</dt><dd>Do you remember a story better when you read it or hear it? And does the answer change with the language?</dd>
+<dt>Grad School, Translated</dt><dd>Committee meetings, reviewer comments, and funding, explained plainly for anyone figuring out academia.</dd>
+<dt>Inside the Lab</dt><dd>How a psycholinguistics study actually gets built, run, and rewritten.</dd>
+</dl>
+</div>
+
+<div class="view" id="v-videos" hidden>
+<h1 class="page-title">Videos</h1>
+<section>
+<h2>Short videos</h2>
+<p class="hint">From TikTok</p>
+<div class="grid" id="tt"></div>
+</section>
+<section>
+<h2>Long videos</h2>
+<p class="hint">From YouTube</p>
+<div class="grid wide" id="yt"></div>
+</section>
+</div>
+
+<div class="view" id="v-follow" hidden>
+<h1 class="page-title">Follow</h1>
+<p class="lede">New videos every week. Pick your platform.</p>
+<div class="follow"><a href="#">TikTok</a><a href="#">Instagram</a><a href="#">YouTube</a><a href="#">Email us</a></div>
+</div>
+</main>
+
+<footer><div class="wrap">© 2026 Tip of my Tongue. Opinions are our own, not our universities’.</div></footer>
+
+<script>
+(function(){
+/* ADD YOUR VIDEOS HERE. Paste full links between the quotes, separated by commas, newest first.
+   TikTok example:  "https://www.tiktok.com/@yourname/video/7123456789012345678"
+   YouTube example: "https://www.youtube.com/watch?v=abcdefghijk" (youtu.be and /shorts/ links also work) */
+var VIDEOS={
+tiktok:[],
+youtube:[]
+};
+var NAMES={tiktok:"TikTok",youtube:"YouTube"};
+function vidId(kind,u){var m=kind==="tiktok"?u.match(/video\/(\d+)/):u.match(/(?:v=|youtu\.be\/|shorts\/|embed\/)([\w-]{11})/);return m&&m[1];}
+function card(kind,url){
+var id=vidId(kind,url);if(!id)return null;
+var d=document.createElement("div");d.className="vid";
+var f=document.createElement("div");f.className="frame "+(kind==="tiktok"?"short":"long");
+var i=document.createElement("iframe");
+i.src=kind==="tiktok"?"https://www.tiktok.com/embed/v2/"+id:"https://www.youtube-nocookie.com/embed/"+id;
+i.title=NAMES[kind]+" video";i.loading="lazy";i.allowFullscreen=true;
+i.setAttribute("allow","encrypted-media; picture-in-picture; fullscreen");
+f.appendChild(i);d.appendChild(f);
+var a=document.createElement("a");a.href=url;a.target="_blank";a.rel="noopener";a.textContent="Watch on "+NAMES[kind];
+d.appendChild(a);return d;}
+function empty(el,text){var p=document.createElement("p");p.className="hint";p.textContent=text;el.appendChild(p);}
+function fill(id,kind){var el=document.getElementById(id);el.textContent="";var n=0;
+VIDEOS[kind].forEach(function(u){var c=card(kind,u);if(c){el.appendChild(c);n++;}});
+if(!n)empty(el,"Coming soon. Add "+NAMES[kind]+" links to the VIDEOS list in this page\u2019s code.");}
+fill("tt","tiktok");fill("yt","youtube");
+var hl=document.getElementById("highlights"),all=[];hl.textContent="";
+VIDEOS.tiktok.forEach(function(u){all.push(["tiktok",u]);});
+VIDEOS.youtube.forEach(function(u){all.push(["youtube",u]);});
+all.slice(0,3).forEach(function(x){var c=card(x[0],x[1]);if(c)hl.appendChild(c);});
+if(!hl.children.length)empty(hl,"Our first videos are coming soon.");
+var words=["tongue","lengua","langue","Zunge","lingua","舌"],i=0,b=document.getElementById("blank");
+b.addEventListener("click",function(){i=(i+1)%words.length;b.textContent=words[i];});
+var names=["home","series","videos","follow"];
+function route(){
+var h=location.hash.replace("#","");if(names.indexOf(h)<0)h="home";
+names.forEach(function(n){document.getElementById("v-"+n).hidden=(n!==h);});
+document.querySelectorAll("[data-nav]").forEach(function(a){
+if(a.dataset.nav===h)a.setAttribute("aria-current","page");else a.removeAttribute("aria-current");});
+window.scrollTo(0,0);
+}
+window.addEventListener("hashchange",route);route();
+})();
+</script>
+</body>
+</html>
