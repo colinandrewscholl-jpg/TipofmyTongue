@@ -87,8 +87,8 @@ img.photo{object-fit:cover;display:block}
 .btn[aria-disabled="true"]{opacity:.55;cursor:default}
 .center{text-align:center}
 .center p{margin-left:auto;margin-right:auto;max-width:36rem}
-.center .grid{display:flex;flex-wrap:wrap;justify-content:center}
-.center .grid .vid{flex:0 1 15rem}
+.center .grid{display:block;width:100%;max-width:100%;}
+.center .grid .vid{width:100%;max-width:100%;flex:none;}
 h2.big{font-size:clamp(2.1rem,6.5vw,2.8rem);margin-bottom:1.6rem}
 footer{padding:2rem 0 3rem;color:var(--muted);font-size:.95rem;border-top:1px solid var(--rule)}
 </style>
@@ -137,7 +137,12 @@ footer{padding:2rem 0 3rem;color:var(--muted);font-size:.95rem;border-top:1px so
 <h2 class="big">Meet the Hosts</h2>
 <div class="hosts">
 <article class="person">
-<img class="photo" src="data:image/jpeg;base64,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" alt="AJ Cruz" width="128" height="128">
+<img class="photo" src="https://drive.google.com/uc?export=view&id=15Goxy2HJhApfxD2I8Cs66ewXMgFlLiKz" alt="Colin Scholl">
+<p>Hi, I’m <strong>Colin Scholl</strong>, a fourth-year PhD student in experimental psychology at UTEP, with a concentration in bilingualism, language, and cognition and a certificate in quantitative methods. My research focuses on memory for written narrative discourse and bilingual language control, using EEG and eye-tracking. The word on the tip of my tongue is “prerogative,” I always thought it was “per-ogative.”</p>
+<div class="links"><a class="btn" data-link="colin-cv">Download CV</a><a class="btn alt" data-link="colin-orcid">ORCID</a></div>
+</article>
+<article class="person">
+<img class="photo" src="https://www.utep.edu/liberalarts/psychology/_Files/images/graduateStudents/AJ-Cruz-726_726.png" alt="AJ Cruz">
 <p>And I’m <strong>AJ Cruz</strong>, a third-year master’s student in experimental psychology at UTEP, with a concentration in bilingualism, language, and cognition. My research focuses on conversational memory in bilinguals, based on dual- and dense-code-switching interactional contexts and participants’ individual language-switching habits. The word on the tip of my tongue is “orange,” I pronounce it like “ah-rnge.”</p>
 <div class="links"><a class="btn" data-link="aj-cv">Download CV</a><a class="btn alt" data-link="aj-orcid">ORCID</a></div>
 </article>
@@ -171,7 +176,7 @@ footer{padding:2rem 0 3rem;color:var(--muted);font-size:.95rem;border-top:1px so
 <div class="view" id="v-follow" hidden>
 <h1 class="page-title">Follow</h1>
 <p class="lede">New videos every week. Pick your platform.</p>
-<div class="follow"><a href="https://www.tiktok.com/@tip.of.my.tongue?is_from_webapp=1&sender_device=pc" target="_blank" rel="noopener">TikTok</a><a href="https://www.instagram.com/reel/DfOZJRHNFrU/?utm_source=ig_web_copy_link&vrfl=NTc4MTIwNjQ2YQ==" target="_blank" rel="noopener">Instagram</a><a href="https://www.youtube.com/channel/UChxbsX28w8mWom4U1V0jWQQ" target="_blank" rel="noopener">YouTube</a><a href="#">Email us</a></div>
+<div class="follow"><a href="https://www.tiktok.com/@tip.of.my.tongue?is_from_webapp=1&sender_device=pc" target="_blank" rel="noopener">TikTok</a><a href="https://www.instagram.com/tip_ofmy_tongue/" target="_blank" rel="noopener">Instagram</a><a href="https://www.youtube.com/channel/UChxbsX28w8mWom4U1V0jWQQ" target="_blank" rel="noopener">YouTube</a><a href="#">Email us</a></div>
 </div>
 </main>
 
@@ -183,7 +188,9 @@ footer{padding:2rem 0 3rem;color:var(--muted);font-size:.95rem;border-top:1px so
    TikTok example:  "https://www.tiktok.com/@yourname/video/7123456789012345678"
    YouTube example: "https://www.youtube.com/watch?v=abcdefghijk" (youtu.be and /shorts/ links also work) */
 var VIDEOS={
-tiktok:[],
+tiktok:[
+  "https://www.tiktok.com/@tip.of.my.tongue/video/7703415233473219854"
+],
 youtube:[
   "https://youtu.be/x24QpAbSHcM?si=0DfdTV-i6Pckhea_"
 ]
@@ -238,28 +245,4 @@ if(s.cv){var c=document.createElement("a");c.href=s.cv;c.target="_blank";c.rel="
 b.appendChild(t);a.appendChild(b);sp.appendChild(a);});
 fill("tt","tiktok");fill("yt","youtube");
 var hl=document.getElementById("highlights"),all=[];hl.textContent="";
-VIDEOS.tiktok.forEach(function(u){all.push(["tiktok",u]);});
-VIDEOS.youtube.forEach(function(u){all.push(["youtube",u]);});
-all.slice(0,3).forEach(function(x){var c=card(x[0],x[1]);if(c)hl.appendChild(c);});
-if(!hl.children.length)empty(hl,"Our first videos are coming soon.");
-var words=["tongue","lengua","langue","Zunge","lingua","舌"],i=0,b=document.getElementById("blank");
-b.addEventListener("click",function(){i=(i+1)%words.length;b.textContent=words[i];});
-/* HOST LINKS: paste each full link between the quotes (CV link, ORCID link). Empty buttons stay greyed out. */
-var HOSTLINKS={"colin-cv":"https://drive.google.com/file/d/1mZxpVw9hMC7sslplfqGJv6cruxG9TnY7/view?usp=sharing","colin-orcid":"https://orcid.org/0009-0003-5155-4812","aj-cv":"","aj-orcid":""};
-document.querySelectorAll("[data-link]").forEach(function(a){
-var u=HOSTLINKS[a.dataset.link];
-if(u){a.href=u;a.target="_blank";a.rel="noopener";}
-else{a.setAttribute("aria-disabled","true");a.title="Link coming soon";a.addEventListener("click",function(e){e.preventDefault();});}});
-var names=["home","series","videos","follow"];
-function route(){
-var h=location.hash.replace("#","");if(names.indexOf(h)<0)h="home";
-names.forEach(function(n){document.getElementById("v-"+n).hidden=(n!==h);});
-document.querySelectorAll("[data-nav]").forEach(function(a){
-if(a.dataset.nav===h)a.setAttribute("aria-current","page");else a.removeAttribute("aria-current");});
-window.scrollTo(0,0);
-}
-window.addEventListener("hashchange",route);route();
-})();
-</script>
-</body>
-</html>
+VIDEOS.tiktok.forEach(function(
