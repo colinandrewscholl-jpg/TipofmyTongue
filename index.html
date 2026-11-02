@@ -245,4 +245,28 @@ if(s.cv){var c=document.createElement("a");c.href=s.cv;c.target="_blank";c.rel="
 b.appendChild(t);a.appendChild(b);sp.appendChild(a);});
 fill("tt","tiktok");fill("yt","youtube");
 var hl=document.getElementById("highlights"),all=[];hl.textContent="";
-VIDEOS.tiktok.forEach(function(
+VIDEOS.tiktok.forEach(function(u){all.push(["tiktok",u]);});
+VIDEOS.youtube.forEach(function(u){all.push(["youtube",u]);});
+all.slice(0,3).forEach(function(x){var c=card(x[0],x[1]);if(c)hl.appendChild(c);});
+if(!hl.children.length)empty(hl,"Our first videos are coming soon.");
+var words=["tongue","lengua","langue","Zunge","lingua","舌"],i=0,b=document.getElementById("blank");
+b.addEventListener("click",function(){i=(i+1)%words.length;b.textContent=words[i];});
+/* HOST LINKS: paste each full link between the quotes (CV link, ORCID link). Empty buttons stay greyed out. */
+var HOSTLINKS={"colin-cv":"https://drive.google.com/file/d/1mZxpVw9hMC7sslplfqGJv6cruxG9TnY7/view?usp=sharing","colin-orcid":"https://orcid.org/0009-0003-5155-4812","aj-cv":"","aj-orcid":""};
+document.querySelectorAll("[data-link]").forEach(function(a){
+var u=HOSTLINKS[a.dataset.link];
+if(u){a.href=u;a.target="_blank";a.rel="noopener";}
+else{a.setAttribute("aria-disabled","true");a.title="Link coming soon";a.addEventListener("click",function(e){e.preventDefault();});}});
+var names=["home","series","videos","follow"];
+function route(){
+var h=location.hash.replace("#","");if(names.indexOf(h)<0)h="home";
+names.forEach(function(n){document.getElementById("v-"+n).hidden=(n!==h);});
+document.querySelectorAll("[data-nav]").forEach(function(a){
+if(a.dataset.nav===h)a.setAttribute("aria-current","page");else a.removeAttribute("aria-current");});
+window.scrollTo(0,0);
+}
+window.addEventListener("hashchange",route);route();
+})();
+</script>
+</body>
+</html>
