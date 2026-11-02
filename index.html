@@ -124,11 +124,6 @@ footer{padding:2rem 0 3rem;color:var(--muted);font-size:.95rem;border-top:1px so
 <p class="hint">Tap the dashed word to translate it into another language.</p>
 </div>
 <section class="center">
-<h2>Video Highlights</h2>
-<div class="grid" id="highlights"></div>
-<p><a class="more" href="#videos">See all videos</a></p>
-</section>
-<section class="center">
 <h2>About</h2>
 <p>We started Tip of my Tongue to discuss our love for psycholinguistic research and to share our experience of grad school as we figure it out.</p>
 
@@ -189,7 +184,9 @@ footer{padding:2rem 0 3rem;color:var(--muted);font-size:.95rem;border-top:1px so
    YouTube example: "https://www.youtube.com/watch?v=abcdefghijk" (youtu.be and /shorts/ links also work) */
 var VIDEOS={
 tiktok:[
-  "https://www.tiktok.com/@tip.of.my.tongue/video/7703415233473219854"
+  "https://www.tiktok.com/@tip.of.my.tongue/video/7703415233473219854",
+  "https://www.tiktok.com/@tip.of.my.tongue/video/7703416508289912078",
+  "https://www.tiktok.com/@tip.of.my.tongue/video/7703415869027765517"
 ],
 youtube:[
   "https://youtu.be/x24QpAbSHcM?si=0DfdTV-i6Pckhea_"
@@ -216,7 +213,7 @@ if(!n)empty(el,"Coming soon. Add "+NAMES[kind]+" links to the VIDEOS list in thi
    photo: an image link or data URI (leave "" to show initials). cv: link to the person's CV.
    video: a YouTube or TikTok link (leave "" to show the example placeholder). */
 var SPOTLIGHTS=[
-{name:"Guest Name",role:"Undergraduate researcher, department, university",photo:"",cv:"",summary:"Replace this with a two- to three-sentence summary of the interview: who they are, what they study, and one thing viewers will learn.",video:""}
+{name:"Featured Interview",role:"Long form discussion on bilingual memory and psycholinguistic research",photo:"",cv:"",summary:"Watch our recent full-length YouTube discussion breaking down psycholinguistic research, graduate student experiences, and bilingual memory dynamics.",video:"https://youtu.be/x24QpAbSHcM?si=0DfdTV-i6Pckhea_"}
 ];
 function embed(url){
 if(!url)return null;
@@ -244,11 +241,14 @@ t.appendChild(n);t.appendChild(r);t.appendChild(m);
 if(s.cv){var c=document.createElement("a");c.href=s.cv;c.target="_blank";c.rel="noopener";c.textContent="View CV";t.appendChild(c);}
 b.appendChild(t);a.appendChild(b);sp.appendChild(a);});
 fill("tt","tiktok");fill("yt","youtube");
-var hl=document.getElementById("highlights"),all=[];hl.textContent="";
+var hl=document.getElementById("highlights"),all=[];
+if(hl){
+hl.textContent="";
 VIDEOS.tiktok.forEach(function(u){all.push(["tiktok",u]);});
 VIDEOS.youtube.forEach(function(u){all.push(["youtube",u]);});
 all.slice(0,3).forEach(function(x){var c=card(x[0],x[1]);if(c)hl.appendChild(c);});
 if(!hl.children.length)empty(hl,"Our first videos are coming soon.");
+}
 var words=["tongue","lengua","langue","Zunge","lingua","舌"],i=0,b=document.getElementById("blank");
 b.addEventListener("click",function(){i=(i+1)%words.length;b.textContent=words[i];});
 /* HOST LINKS: paste each full link between the quotes (CV link, ORCID link). Empty buttons stay greyed out. */
