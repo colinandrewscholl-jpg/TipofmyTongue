@@ -42,12 +42,8 @@ section{padding:2.5rem 0;border-top:1px solid var(--rule)}
 h2{font-size:1.7rem;letter-spacing:-.01em;margin:0 0 1.2rem}
 .grid{display:grid;gap:1.5rem;grid-template-columns:repeat(auto-fill,minmax(15rem,1fr));margin-bottom:1rem}
 .grid.wide{grid-template-columns:repeat(auto-fill,minmax(20rem,1fr))}
-.feed-scroll{display:flex;flex-direction:column;gap:1.5rem;max-width:36rem;margin:0 auto}
-.vid-card{background:var(--surface);border:1px solid var(--rule);border-radius:.75rem;padding:1.5rem;text-align:center}
-.vid-card h3{margin:0 0 .5rem;font-size:1.2rem}
-.vid-card p{margin:0 0 1rem;color:var(--muted);font-size:.95rem}
-.vid-btn{display:inline-block;font:700 1rem "Bricolage Grotesque",sans-serif;text-decoration:none;padding:.6rem 1.4rem;border-radius:.4rem;background:var(--accent);color:#fff;transition:opacity .2s}
-.vid-btn:hover{opacity:.9}
+.feed-scroll{display:flex;flex-direction:column;gap:2rem;max-width:32rem;margin:0 auto;align-items:center}
+.feed-scroll .vid{width:100%;display:flex;justify-content:center}
 .frame{position:relative;width:100%;background:var(--surface);border:1px solid var(--rule);border-radius:.5rem;overflow:hidden}
 .frame.long{aspect-ratio:16/9}
 .frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
@@ -76,6 +72,7 @@ h2{font-size:1.7rem;letter-spacing:-.01em;margin:0 0 1.2rem}
 h2.big{font-size:clamp(2.1rem,6.5vw,2.8rem);margin-bottom:1.6rem}
 footer{padding:2rem 0 3rem;color:var(--muted);font-size:.95rem;border-top:1px solid var(--rule)}
 </style>
+<script async src="https://www.tiktok.com/embed.js"></script>
 </head>
 <body>
 <header><div class="wrap"><nav aria-label="Main">
@@ -193,32 +190,41 @@ var NAMES={tiktok:"TikTok",youtube:"YouTube"};
 function vidId(kind,u){var m=kind==="tiktok"?u.match(/video\/(\d+)/):u.match(/(?:v=|youtu\.be\/|shorts\/|embed\/)([\w-]{11})/);return m&&m[1];}
 function card(kind,url){
 var id=vidId(kind,url);if(!id)return null;
-if(kind==="tiktok"){
-  var d=document.createElement("div");d.className="vid-card";
-  var h=document.createElement("h3");h.textContent="TikTok Short Video";
-  var p=document.createElement("p");p.textContent="Watch directly on TikTok for optimal playback.";
-  var a=document.createElement("a");a.href=url;a.target="_blank";a.rel="noopener";a.className="vid-btn";a.textContent="Watch on TikTok";
-  d.appendChild(h);d.appendChild(p);d.appendChild(a);return d;
-}
 var d=document.createElement("div");d.className="vid";
+if(kind==="tiktok"){
+  var b=document.createElement("blockquote");
+  b.className="tiktok-embed";
+  b.setAttribute("cite",url);
+  b.setAttribute("data-video-id",id);
+  b.style.maxWidth="325px";
+  b.style.minWidth="325px";
+  var s=document.createElement("section");
+  s.innerHTML='<a target="_blank" href="'+url+'">@tip.of.my.tongue</a>';
+  b.appendChild(s);
+  d.appendChild(b);
+  return d;
+}
 var f=document.createElement("div");f.className="frame long";
 var i=document.createElement("iframe");
 i.src="https://www.youtube-nocookie.com/embed/"+id;
 i.title="YouTube video";i.loading="lazy";i.allowFullscreen=true;
 i.setAttribute("allow","encrypted-media; picture-in-picture; fullscreen");
 f.appendChild(i);d.appendChild(f);
-var a=document.createElement("a");a.href=url;a.target="_blank";a.rel="noopener";a.textContent="Watch on YouTube";
-d.appendChild(a);return d;}
+return d;}
+
 function empty(el,text){var p=document.createElement("p");p.className="hint";p.textContent=text;el.appendChild(p);}
-function fill(id,kind){var el=document.getElementById(id);el.textContent="";var n=0;
-VIDEOS[kind].forEach(function(u){var c=card(kind,u);if(c){el.appendChild(c);n++;}});
-if(!n)empty(el,"Coming soon.");}
+function fill(id,kind){
+  var el=document.getElementById(id);el.textContent="";var n=0;
+  VIDEOS[kind].forEach(function(u){var c=card(kind,u);if(c){el.appendChild(c);n++;}});
+  if(!n)empty(el,"Coming soon.");
+  if(window.tiktokEmbed) window.tiktokEmbed.lib.render();
+}
 
 var SPOTLIGHTS=[
 {
   name:"Regina Reza",
   role:"Researcher",
-  photo:"https://drive.google.com/file/d/14MMS9KUsBOSvrh5xkkn0Zt9k6U4Ef7UR/view?usp=sharing",
+  photo:"https://drive.google.com/uc?export=view&id=14MMS9KUsBOSvrh5xkkn0Zt9k6U4Ef7UR",
   cv:"",
   summary:"Regina Reza discusses her research on interracial couples and their coping mechanisms when facing discrimination-related stress.",
   video:"https://youtu.be/x24QpAbSHcM?si=0DfdTV-i6Pckhea_"
