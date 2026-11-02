@@ -40,10 +40,6 @@ h1{font-size:clamp(2.6rem,9vw,4.6rem);line-height:1.02;letter-spacing:-.02em;fon
 section{padding:2.5rem 0;border-top:1px solid var(--rule)}
 .view{padding-bottom:3rem}
 h2{font-size:1.7rem;letter-spacing:-.01em;margin:0 0 1.2rem}
-.grid{display:grid;gap:1.5rem;grid-template-columns:repeat(auto-fill,minmax(15rem,1fr));margin-bottom:1rem}
-.grid.wide{grid-template-columns:repeat(auto-fill,minmax(20rem,1fr))}
-.feed-scroll{display:flex;flex-direction:column;gap:2rem;max-width:32rem;margin:0 auto;align-items:center}
-.feed-scroll .vid{width:100%;display:flex;justify-content:center}
 .frame{position:relative;width:100%;background:var(--surface);border:1px solid var(--rule);border-radius:.5rem;overflow:hidden}
 .frame.long{aspect-ratio:16/9}
 .frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
@@ -52,7 +48,8 @@ h2{font-size:1.7rem;letter-spacing:-.01em;margin:0 0 1.2rem}
 .spot-content{max-width:38rem}
 .spot h3{margin:0 0 .5rem;font-size:1.8rem}
 .spot p{margin:.25rem 0 1rem;color:var(--muted);font-size:1.1rem;line-height:1.6}
-.spot .frame{margin-top:1.5rem}
+.spot .video-container{width:100%;display:flex;flex-direction:column;align-items:center;gap:1.5rem;margin-top:1.5rem}
+.spot .tiktok-wrapper{display:flex;justify-content:center;width:100%}
 .hosts{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;align-items:stretch}
 .person{display:flex;flex-direction:column;align-items:center;text-align:center;gap:1rem;background:var(--surface);border:1px solid var(--rule);border-radius:.75rem;padding:1.5rem}
 .person p{margin:0}
@@ -94,7 +91,7 @@ footer{padding:2rem 0 3rem;color:var(--muted);font-size:.95rem;border-top:1px so
   <circle cx="82" cy="97" r="7" fill="#14213D"/>
   <circle cx="106" cy="97" r="7" fill="#14213D"/>
 </svg> Tip of my Tongue</a>
-<a href="#home" data-nav="home">Home</a><a href="#series" data-nav="series">Series</a><a href="#videos" data-nav="videos">Videos</a><a href="#follow" data-nav="follow">Follow</a>
+<a href="#home" data-nav="home">Home</a><a href="#series" data-nav="series">Series</a><a href="#follow" data-nav="follow">Follow</a>
 </nav></div></header>
 
 <main class="wrap">
@@ -134,20 +131,6 @@ footer{padding:2rem 0 3rem;color:var(--muted);font-size:.95rem;border-top:1px so
 </section>
 </div>
 
-<div class="view" id="v-videos" hidden>
-<h1 class="page-title">Videos</h1>
-<section>
-<h2>Short videos</h2>
-<p class="hint">From TikTok</p>
-<div class="feed-scroll" id="tt"></div>
-</section>
-<section>
-<h2>Long videos</h2>
-<p class="hint">From YouTube</p>
-<div class="grid wide" id="yt"></div>
-</section>
-</div>
-
 <div class="view" id="v-follow" hidden>
 <h1 class="page-title">Follow</h1>
 <p class="lede">New videos every week. Pick your platform.</p>
@@ -176,22 +159,33 @@ footer{padding:2rem 0 3rem;color:var(--muted);font-size:.95rem;border-top:1px so
 
 <script>
 (function(){
-var VIDEOS={
-tiktok:[
-  "https://www.tiktok.com/@tip.of.my.tongue/video/7703415233473219854",
-  "https://www.tiktok.com/@tip.of.my.tongue/video/7703416508289912078",
-  "https://www.tiktok.com/@tip.of.my.tongue/video/7703415869027765517"
-],
-youtube:[
-  "https://youtu.be/x24QpAbSHcM?si=0DfdTV-i6Pckhea_"
-]
-};
-var NAMES={tiktok:"TikTok",youtube:"YouTube"};
 function vidId(kind,u){var m=kind==="tiktok"?u.match(/video\/(\d+)/):u.match(/(?:v=|youtu\.be\/|shorts\/|embed\/)([\w-]{11})/);return m&&m[1];}
-function card(kind,url){
-var id=vidId(kind,url);if(!id)return null;
-var d=document.createElement("div");d.className="vid";
-if(kind==="tiktok"){
+
+var SPOTLIGHTS=[
+{
+  name:"Regina Reza",
+  role:"Researcher",
+  photo:"https://drive.google.com/uc?export=view&id=14MMS9KUsBOSvrh5xkkn0Zt9k6U4Ef7UR",
+  cv:"",
+  summary:"Regina Reza discusses her research on interracial couples and their coping mechanisms when facing discrimination-related stress.",
+  youtube:"https://youtu.be/x24QpAbSHcM?si=0DfdTV-i6Pckhea_",
+  tiktok:"https://www.tiktok.com/@tip.of.my.tongue/video/7703415233473219854"
+}
+];
+
+function createYoutubeEmbed(url){
+  var id=vidId("youtube",url);if(!id)return null;
+  var f=document.createElement("div");f.className="frame long";
+  var i=document.createElement("iframe");
+  i.src="https://www.youtube-nocookie.com/embed/"+id;
+  i.title="YouTube interview";i.loading="lazy";i.allowFullscreen=true;
+  i.setAttribute("allow","encrypted-media; picture-in-picture; fullscreen");
+  f.appendChild(i);return f;
+}
+
+function createTiktokEmbed(url){
+  var id=vidId("tiktok",url);if(!id)return null;
+  var wrap=document.createElement("div");wrap.className="tiktok-wrapper";
   var b=document.createElement("blockquote");
   b.className="tiktok-embed";
   b.setAttribute("cite",url);
@@ -201,69 +195,42 @@ if(kind==="tiktok"){
   var s=document.createElement("section");
   s.innerHTML='<a target="_blank" href="'+url+'">@tip.of.my.tongue</a>';
   b.appendChild(s);
-  d.appendChild(b);
-  return d;
+  wrap.appendChild(b);
+  return wrap;
 }
-var f=document.createElement("div");f.className="frame long";
-var i=document.createElement("iframe");
-i.src="https://www.youtube-nocookie.com/embed/"+id;
-i.title="YouTube video";i.loading="lazy";i.allowFullscreen=true;
-i.setAttribute("allow","encrypted-media; picture-in-picture; fullscreen");
-f.appendChild(i);d.appendChild(f);
-return d;}
-
-function empty(el,text){var p=document.createElement("p");p.className="hint";p.textContent=text;el.appendChild(p);}
-function fill(id,kind){
-  var el=document.getElementById(id);el.textContent="";var n=0;
-  VIDEOS[kind].forEach(function(u){var c=card(kind,u);if(c){el.appendChild(c);n++;}});
-  if(!n)empty(el,"Coming soon.");
-  if(window.tiktokEmbed) window.tiktokEmbed.lib.render();
-}
-
-var SPOTLIGHTS=[
-{
-  name:"Regina Reza",
-  role:"Researcher",
-  photo:"https://drive.google.com/uc?export=view&id=14MMS9KUsBOSvrh5xkkn0Zt9k6U4Ef7UR",
-  cv:"",
-  summary:"Regina Reza discusses her research on interracial couples and their coping mechanisms when facing discrimination-related stress.",
-  video:"https://youtu.be/x24QpAbSHcM?si=0DfdTV-i6Pckhea_"
-}
-];
-
-function embed(url){
-if(!url)return null;
-var kind=/tiktok\.com/.test(url)?"tiktok":"youtube",id=vidId(kind,url);if(!id)return null;
-var f=document.createElement("div");f.className="frame long";
-var i=document.createElement("iframe");
-i.src="https://www.youtube-nocookie.com/embed/"+id;
-i.title="YouTube interview";i.loading="lazy";i.allowFullscreen=true;
-i.setAttribute("allow","encrypted-media; picture-in-picture; fullscreen");
-f.appendChild(i);return f;}
 
 var sp=document.getElementById("spots");sp.textContent="";
 SPOTLIGHTS.forEach(function(s){
-var a=document.createElement("article");a.className="spot";
-var ph=document.createElement("img");
-ph.src=s.photo;
-ph.alt="Photo of "+s.name;
-ph.className="photo";
-a.appendChild(ph);
+  var a=document.createElement("article");a.className="spot";
+  
+  var ph=document.createElement("img");
+  ph.src=s.photo;
+  ph.alt="Photo of "+s.name;
+  ph.className="photo";
+  a.appendChild(ph);
 
-var content=document.createElement("div");
-content.className="spot-content";
-var n=document.createElement("h3"),r=document.createElement("p"),m=document.createElement("p");
-n.textContent=s.name;r.className="hint";r.textContent=s.role;m.textContent=s.summary;
-content.appendChild(n);content.appendChild(r);content.appendChild(m);
-if(s.cv){var c=document.createElement("a");c.href=s.cv;c.target="_blank";c.rel="noopener";c.textContent="View CV";content.appendChild(c);}
-a.appendChild(content);
+  var content=document.createElement("div");
+  content.className="spot-content";
+  var n=document.createElement("h3"),r=document.createElement("p"),m=document.createElement("p");
+  n.textContent=s.name;r.className="hint";r.textContent=s.role;m.textContent=s.summary;
+  content.appendChild(n);content.appendChild(r);content.appendChild(m);
+  if(s.cv){var c=document.createElement("a");c.href=s.cv;c.target="_blank";c.rel="noopener";c.textContent="View CV";content.appendChild(c);}
+  a.appendChild(content);
 
-var v=embed(s.video);
-if(v) a.appendChild(v);
+  var videoBox=document.createElement("div");
+  videoBox.className="video-container";
 
-sp.appendChild(a);});
+  var yt=createYoutubeEmbed(s.youtube);
+  if(yt) videoBox.appendChild(yt);
 
-fill("tt","tiktok");fill("yt","youtube");
+  var tt=createTiktokEmbed(s.tiktok);
+  if(tt) videoBox.appendChild(tt);
+
+  a.appendChild(videoBox);
+  sp.appendChild(a);
+});
+
+if(window.tiktokEmbed) window.tiktokEmbed.lib.render();
 
 var words=["tongue","lengua","langue","Zunge","lingua","舌"],i=0,b=document.getElementById("blank");
 b.addEventListener("click",function(){i=(i+1)%words.length;b.textContent=words[i];});
@@ -274,7 +241,7 @@ var u=HOSTLINKS[a.dataset.link];
 if(u){a.href=u;a.target="_blank";a.rel="noopener";}
 else{a.setAttribute("aria-disabled","true");a.title="Link coming soon";a.addEventListener("click",function(e){e.preventDefault();});}});
 
-var names=["home","series","videos","follow"];
+var names=["home","series","follow"];
 function route(){
 var h=location.hash.replace("#","");if(names.indexOf(h)<0)h="home";
 names.forEach(function(n){document.getElementById("v-"+n).hidden=(n!==h);});
