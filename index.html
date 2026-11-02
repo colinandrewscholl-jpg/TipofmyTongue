@@ -16,7 +16,7 @@ body{margin:0;background:var(--bg);color:var(--ink);font:400 1.125rem/1.7 "Sourc
 a{color:inherit}
 :focus-visible{outline:3px solid var(--accent);outline-offset:3px}
 [hidden]{display:none!important}
-.wrap{max-width:46rem;margin:0 auto;padding:0 1.25rem}
+.wrap{max-width:52rem;margin:0 auto;padding:0 1.5rem}
 h1,h2,h3,nav{font-family:"Bricolage Grotesque","Helvetica Neue",Arial,sans-serif}
 header{border-bottom:1px solid var(--rule)}
 nav{display:flex;align-items:center;gap:1.25rem;padding:.9rem 0;flex-wrap:wrap;font-weight:500;font-size:1rem}
@@ -35,51 +35,33 @@ h1{font-size:clamp(2.6rem,9vw,4.6rem);line-height:1.02;letter-spacing:-.02em;fon
 .dots span:nth-child(2){animation-delay:.2s}.dots span:nth-child(3){animation-delay:.4s}
 @keyframes b{0%,60%,100%{opacity:.25}30%{opacity:1}}
 @media (prefers-reduced-motion:reduce){.dots span{animation:none}}
-.lede{max-width:34rem;color:var(--muted);margin:0 0 1rem}
+.lede{max-width:38rem;color:var(--muted);margin:0 0 1.5rem;font-size:1.15rem}
 .hint{font-size:.95rem;color:var(--muted);font-style:italic}
 section{padding:2.5rem 0;border-top:1px solid var(--rule)}
 .view{padding-bottom:3rem}
 h2{font-size:1.7rem;letter-spacing:-.01em;margin:0 0 1.2rem}
-dl{margin:0}
-dt{font-family:"Bricolage Grotesque",sans-serif;font-weight:700;font-size:1.2rem;margin-top:1.4rem}
-dt:first-child{margin-top:0}
-dd{margin:.15rem 0 0;color:var(--muted);max-width:36rem}
-.feed{list-style:none;padding:0;margin:0}
-.feed li{display:flex;gap:1rem;align-items:baseline;padding:.8rem 0;border-bottom:1px solid var(--rule)}
-.feed li:last-child{border-bottom:0}
-.feed .len{font:700 .9rem "Bricolage Grotesque",sans-serif;background:var(--sun);color:#14213D;border-radius:99px;padding:.05rem .7rem;white-space:nowrap}
-.host{display:grid;gap:1rem;margin-top:2rem}
-.host p{margin:0}
-.photo{width:8rem;height:8rem;border-radius:50%;background:var(--surface);border:1px solid var(--rule);display:grid;place-items:center;color:var(--muted);font:500 .85rem "Bricolage Grotesque",sans-serif;text-align:center}
-@media (min-width:40rem){.host{grid-template-columns:8rem 1fr;gap:2rem}}
-.fill{display:inline-block;min-width:6.5em;border-bottom:2px dashed var(--accent);color:var(--muted);font-style:italic;text-align:center;padding:0 .3em;line-height:1.3}
-.follow{display:flex;gap:.75rem;flex-wrap:wrap}
-.follow a{font:700 1rem "Bricolage Grotesque",sans-serif;text-decoration:none;padding:.6rem 1.2rem;border-radius:.4rem;border:2px solid var(--ink)}
-.follow a:first-child{background:var(--ink);color:var(--bg)}
-.follow a:hover{border-color:var(--accent)}
-.grid{display:grid;gap:1.25rem;grid-template-columns:repeat(auto-fill,minmax(14rem,1fr));margin-bottom:1rem}
-.grid.wide{grid-template-columns:repeat(auto-fill,minmax(19rem,1fr))}
+.grid{display:grid;gap:1.5rem;grid-template-columns:repeat(auto-fill,minmax(15rem,1fr));margin-bottom:1rem}
+.grid.wide{grid-template-columns:repeat(auto-fill,minmax(20rem,1fr))}
 .vid a{display:inline-block;margin-top:.5rem;font:700 .95rem "Bricolage Grotesque",sans-serif}
 .frame{position:relative;width:100%;background:var(--surface);border:1px solid var(--rule);border-radius:.5rem;overflow:hidden}
 .frame.short{aspect-ratio:9/16}.frame.long{aspect-ratio:16/9}
 .frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
 .more{font:700 1rem "Bricolage Grotesque",sans-serif}
-.spot{display:grid;gap:1.25rem;padding:1.5rem 0}
-.spot+.spot{border-top:1px solid var(--rule)}
-.spot h3{margin:0;font-size:1.3rem}
-.spot-body{display:flex;gap:1.25rem;align-items:flex-start}
-.spot-body .photo{flex:none;width:6rem;height:6rem;font-size:1.4rem}
-.spot-body p{margin:.25rem 0 .5rem}
+.spot{display:grid;gap:2rem;padding:2rem;background:var(--surface);border:1px solid var(--rule);border-radius:1rem;margin-top:1rem}
+.spot+.spot{margin-top:2rem}
+.spot h3{margin:0 0 .5rem;font-size:1.5rem}
+.spot-body{display:flex;gap:1.5rem;align-items:flex-start}
+.spot-body .photo{flex:none;width:5.5rem;height:5.5rem;border-radius:50%;object-fit:cover;background:var(--bg);border:1px solid var(--rule);display:grid;place-items:center;font:700 1.2rem "Bricolage Grotesque",sans-serif;color:var(--ink)}
+.spot-body p{margin:.25rem 0 .75rem}
 .spot a{font:700 .95rem "Bricolage Grotesque",sans-serif}
 img.photo{object-fit:cover;display:block}
 .frame.ph{display:grid;place-items:center;text-align:center;padding:1rem;color:var(--muted);font:500 .95rem "Bricolage Grotesque",sans-serif}
-@media (min-width:40rem){.spot{grid-template-columns:minmax(0,1.1fr) minmax(0,1fr)}}
-.hosts{display:grid;gap:1.5rem}
-.hosts{grid-template-columns:1fr 1fr;gap:1rem;align-items:stretch}
+@media (min-width:44rem){.spot{grid-template-columns:minmax(0,1.2fr) minmax(0,1fr)}}
+.hosts{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;align-items:stretch}
 .person{display:flex;flex-direction:column;align-items:center;text-align:center;gap:1rem;background:var(--surface);border:1px solid var(--rule);border-radius:.75rem;padding:1.5rem}
 .person p{margin:0}
 .person .photo{width:min(100%,15rem);height:auto;aspect-ratio:1/1;margin:0 auto}
-@media (max-width:40rem){.person{padding:1rem;font-size:.95rem;line-height:1.55}.btn{padding:.45rem .8rem;font-size:.9rem}}
+@media (max-width:40rem){.hosts{grid-template-columns:1fr}.person{padding:1.25rem;font-size:1rem;line-height:1.55}.btn{padding:.45rem .8rem;font-size:.9rem}}
 .links{display:flex;gap:.6rem;flex-wrap:wrap;justify-content:center;margin-top:auto}
 .btn{font:700 1rem "Bricolage Grotesque",sans-serif;text-decoration:none;padding:.55rem 1.1rem;border-radius:.4rem;border:2px solid var(--ink);background:var(--ink);color:var(--bg);cursor:pointer}
 .btn.alt{background:none;color:var(--ink)}
@@ -87,8 +69,6 @@ img.photo{object-fit:cover;display:block}
 .btn[aria-disabled="true"]{opacity:.55;cursor:default}
 .center{text-align:center}
 .center p{margin-left:auto;margin-right:auto;max-width:36rem}
-.center .grid{display:block;width:100%;max-width:100%;}
-.center .grid .vid{width:100%;max-width:100%;flex:none;}
 h2.big{font-size:clamp(2.1rem,6.5vw,2.8rem);margin-bottom:1.6rem}
 footer{padding:2rem 0 3rem;color:var(--muted);font-size:.95rem;border-top:1px solid var(--rule)}
 </style>
@@ -126,7 +106,6 @@ footer{padding:2rem 0 3rem;color:var(--muted);font-size:.95rem;border-top:1px so
 <section class="center">
 <h2>About</h2>
 <p>We started Tip of my Tongue to discuss our love for psycholinguistic research and to share our experience of grad school as we figure it out.</p>
-
 </section>
 <section class="center">
 <h2 class="big">Meet the Hosts</h2>
@@ -179,9 +158,6 @@ footer{padding:2rem 0 3rem;color:var(--muted);font-size:.95rem;border-top:1px so
 
 <script>
 (function(){
-/* ADD YOUR VIDEOS HERE. Paste full links between the quotes, separated by commas, newest first.
-   TikTok example:  "https://www.tiktok.com/@yourname/video/7123456789012345678"
-   YouTube example: "https://www.youtube.com/watch?v=abcdefghijk" (youtu.be and /shorts/ links also work) */
 var VIDEOS={
 tiktok:[
   "https://www.tiktok.com/@tip.of.my.tongue/video/7703415233473219854",
@@ -208,13 +184,19 @@ d.appendChild(a);return d;}
 function empty(el,text){var p=document.createElement("p");p.className="hint";p.textContent=text;el.appendChild(p);}
 function fill(id,kind){var el=document.getElementById(id);el.textContent="";var n=0;
 VIDEOS[kind].forEach(function(u){var c=card(kind,u);if(c){el.appendChild(c);n++;}});
-if(!n)empty(el,"Coming soon. Add "+NAMES[kind]+" links to the VIDEOS list in this page\u2019s code.");}
-/* RESEARCH SPOTLIGHT: copy an entry, then change name, role, photo, cv, summary, and video.
-   photo: an image link or data URI (leave "" to show initials). cv: link to the person's CV.
-   video: a YouTube or TikTok link (leave "" to show the example placeholder). */
+if(!n)empty(el,"Coming soon.");}
+
 var SPOTLIGHTS=[
-{name:"Featured Interview",role:"Long form discussion on bilingual memory and psycholinguistic research",photo:"",cv:"",summary:"Watch our recent full-length YouTube discussion breaking down psycholinguistic research, graduate student experiences, and bilingual memory dynamics.",video:"https://youtu.be/x24QpAbSHcM?si=0DfdTV-i6Pckhea_"}
+{
+  name:"Regina Reza",
+  role:"Researcher",
+  photo:"",
+  cv:"",
+  summary:"Regina Reza discusses her research on interracial couples and their coping mechanisms when facing discrimination-related stress.",
+  video:"https://youtu.be/x24QpAbSHcM?si=0DfdTV-i6Pckhea_"
+}
 ];
+
 function embed(url){
 if(!url)return null;
 var kind=/tiktok\.com/.test(url)?"tiktok":"youtube",id=vidId(kind,url);if(!id)return null;
@@ -224,39 +206,44 @@ i.src=kind==="tiktok"?"https://www.tiktok.com/embed/v2/"+id:"https://www.youtube
 i.title=NAMES[kind]+" interview";i.loading="lazy";i.allowFullscreen=true;
 i.setAttribute("allow","encrypted-media; picture-in-picture; fullscreen");
 f.appendChild(i);return f;}
+
 var sp=document.getElementById("spots");sp.textContent="";
 SPOTLIGHTS.forEach(function(s){
 var a=document.createElement("article");a.className="spot";
 var v=embed(s.video);
-if(!v){v=document.createElement("div");v.className="frame long ph";v.textContent="Example interview video. Add a YouTube or TikTok link to replace this.";}
+if(!v){v=document.createElement("div");v.className="frame long ph";v.textContent="Example interview video.";}
 a.appendChild(v);
 var b=document.createElement("div");b.className="spot-body";
 var ph;
-if(s.photo){ph=document.createElement("img");ph.src=s.photo;ph.alt="Photo of "+s.name;}
-else{ph=document.createElement("div");ph.textContent=s.name.split(" ").map(function(w){return w[0];}).join("").slice(0,2);}
-ph.className="photo";b.appendChild(ph);
+if(s.photo){
+  ph=document.createElement("img");
+  ph.src=s.photo;
+  ph.alt="Photo of "+s.name;
+  ph.className="photo";
+} else {
+  ph=document.createElement("div");
+  var initials = s.name.split(" ").map(function(w){return w[0];}).join("").slice(0,2).toUpperCase();
+  ph.textContent=initials;
+  ph.className="photo";
+}
+b.appendChild(ph);
 var t=document.createElement("div"),n=document.createElement("h3"),r=document.createElement("p"),m=document.createElement("p");
 n.textContent=s.name;r.className="hint";r.textContent=s.role;m.textContent=s.summary;
 t.appendChild(n);t.appendChild(r);t.appendChild(m);
 if(s.cv){var c=document.createElement("a");c.href=s.cv;c.target="_blank";c.rel="noopener";c.textContent="View CV";t.appendChild(c);}
 b.appendChild(t);a.appendChild(b);sp.appendChild(a);});
+
 fill("tt","tiktok");fill("yt","youtube");
-var hl=document.getElementById("highlights"),all=[];
-if(hl){
-hl.textContent="";
-VIDEOS.tiktok.forEach(function(u){all.push(["tiktok",u]);});
-VIDEOS.youtube.forEach(function(u){all.push(["youtube",u]);});
-all.slice(0,3).forEach(function(x){var c=card(x[0],x[1]);if(c)hl.appendChild(c);});
-if(!hl.children.length)empty(hl,"Our first videos are coming soon.");
-}
+
 var words=["tongue","lengua","langue","Zunge","lingua","舌"],i=0,b=document.getElementById("blank");
 b.addEventListener("click",function(){i=(i+1)%words.length;b.textContent=words[i];});
-/* HOST LINKS: paste each full link between the quotes (CV link, ORCID link). Empty buttons stay greyed out. */
+
 var HOSTLINKS={"colin-cv":"https://drive.google.com/file/d/1mZxpVw9hMC7sslplfqGJv6cruxG9TnY7/view?usp=sharing","colin-orcid":"https://orcid.org/0009-0003-5155-4812","aj-cv":"","aj-orcid":""};
 document.querySelectorAll("[data-link]").forEach(function(a){
 var u=HOSTLINKS[a.dataset.link];
 if(u){a.href=u;a.target="_blank";a.rel="noopener";}
 else{a.setAttribute("aria-disabled","true");a.title="Link coming soon";a.addEventListener("click",function(e){e.preventDefault();});}});
+
 var names=["home","series","videos","follow"];
 function route(){
 var h=location.hash.replace("#","");if(names.indexOf(h)<0)h="home";
