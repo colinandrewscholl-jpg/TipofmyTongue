@@ -44,7 +44,7 @@ h2{font-size:1.7rem;letter-spacing:-.01em;margin:0 0 1.2rem}
 .frame.long{aspect-ratio:16/9}
 .frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
 .spot{display:flex;flex-direction:column;gap:1.5rem;padding:2rem;background:var(--surface);border:1px solid var(--rule);border-radius:1rem;margin-top:1rem;align-items:center;text-align:center}
-.spot .photo{width:12rem;height:12rem;border-radius:50%;object-fit:cover;background:var(--bg);border:2px solid var(--rule);display:block;margin:0 auto}
+.spot .photo, .spot .photo-fallback{width:12rem;height:12rem;border-radius:50%;object-fit:cover;background:var(--bg);border:2px solid var(--rule);display:grid;place-items:center;margin:0 auto;font:700 2.5rem "Bricolage Grotesque",sans-serif;color:var(--ink)}
 .spot-content{max-width:38rem}
 .spot h3{margin:0 0 .5rem;font-size:1.8rem}
 .spot p{margin:.25rem 0 1rem;color:var(--muted);font-size:1.1rem;line-height:1.6}
@@ -165,7 +165,7 @@ var SPOTLIGHTS=[
 {
   name:"Regina Reza",
   role:"Researcher",
-  photo:"https://drive.google.com/uc?export=view&id=14MMS9KUsBOSvrh5xkkn0Zt9k6U4Ef7UR",
+  photo:"https://drive.google.com/thumbnail?id=14MMS9KUsBOSvrh5xkkn0Zt9k6U4Ef7UR&sz=w1000",
   cv:"",
   summary:"Regina Reza discusses her research on interracial couples and their coping mechanisms when facing discrimination-related stress.",
   youtube:"https://youtu.be/x24QpAbSHcM?si=0DfdTV-i6Pckhea_",
@@ -207,6 +207,14 @@ SPOTLIGHTS.forEach(function(s){
   ph.src=s.photo;
   ph.alt="Photo of "+s.name;
   ph.className="photo";
+  
+  ph.onerror = function() {
+    var fallback = document.createElement("div");
+    fallback.className = "photo-fallback";
+    fallback.textContent = s.name.split(" ").map(function(w){return w[0];}).join("").slice(0,2).toUpperCase();
+    ph.replaceWith(fallback);
+  };
+  
   a.appendChild(ph);
 
   var content=document.createElement("div");
