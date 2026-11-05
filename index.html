@@ -50,6 +50,9 @@ h2{font-size:1.7rem;letter-spacing:-.01em;margin:0 0 1.2rem}
 .spot p{margin:.25rem 0 1rem;color:var(--muted);font-size:1.1rem;line-height:1.6}
 .spot .video-container{width:100%;display:flex;flex-direction:column;align-items:center;gap:1.5rem;margin-top:1.5rem}
 .spot .tiktok-wrapper{display:flex;justify-content:center;width:100%}
+.feature{max-width:40rem;margin:1.5rem auto 0;padding:1rem;background:var(--surface);border:1px solid var(--rule);border-radius:1rem}
+.feature .caption{margin:.75rem 0 0;max-width:none;font-size:.95rem;color:var(--muted);font-style:italic}
+.feature .links{margin-top:1rem}
 .hosts{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;align-items:stretch}
 .person{display:flex;flex-direction:column;align-items:center;text-align:center;gap:1rem;background:var(--surface);border:1px solid var(--rule);border-radius:.75rem;padding:1.5rem}
 .person p{margin:0}
@@ -105,13 +108,22 @@ footer{padding:2rem 0 3rem;color:var(--muted);font-size:.95rem;border-top:1px so
 <h2>About</h2>
 <p>We started Tip of my Tongue to discuss our love for psycholinguistic research and to share our experience of grad school as we figure it out.</p>
 </section>
+<section class="center" id="featured">
+<h2>Featured Spotlight</h2>
+<p>Check out our video research spotlights featuring undergraduate and graduate student scientists.</p>
+<div class="feature">
+<div class="frame long"><iframe src="https://www.youtube-nocookie.com/embed/x24QpAbSHcM" title="Tip of my Tongue - Research Spotlight" loading="lazy" allow="encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe></div>
+<p class="caption">Research Spotlight Series: Regina Reza</p>
+<div class="links"><a class="btn" href="https://youtu.be/x24QpAbSHcM" target="_blank" rel="noopener">Watch on YouTube</a><a class="btn alt" href="#series">See the full series</a></div>
+</div>
+</section>
 <section class="center">
 <h2 class="big">Meet the Hosts</h2>
 <div class="hosts">
 <article class="person">
 <img class="photo" src="https://www.utep.edu/liberalarts/psychology/_Files/images/graduateStudents/091024_Faculty_Staff_Portrait_Colin_Scholl_LM-2---300-x-300.jpg" alt="Colin Scholl">
 <p>Hi, I’m <strong>Colin Scholl</strong>, a fourth-year PhD student in experimental psychology at UTEP, with a concentration in bilingualism, language, and cognition and a certificate in quantitative methods. My research focuses on memory for written narrative discourse and bilingual language control, using EEG and eye-tracking. The word on the tip of my tongue is “prerogative,” I always thought it was “per-ogative.”</p>
-<div class="links"><a class="btn" data-link="colin-cv">Download CV</a><a class="btn alt" data-link="colin-orcid">ORCID</a></div>
+<div class="links"><a class="btn" data-link="colin-cv">Download CV</a><a class="btn alt" data-link="colin-portfolio">Academic Portfolio</a><a class="btn alt" data-link="colin-orcid">ORCID</a></div>
 </article>
 <article class="person">
 <img class="photo" src="https://www.utep.edu/liberalarts/psychology/_Files/images/graduateStudents/AJ-Cruz-726_726.png" alt="AJ Cruz">
@@ -170,8 +182,26 @@ var SPOTLIGHTS=[
   summary:"Regina Reza discusses her research on interracial couples and their coping mechanisms when facing discrimination-related stress.",
   youtube:"https://youtu.be/x24QpAbSHcM?si=0DfdTV-i6Pckhea_",
   tiktok:"https://www.tiktok.com/@tip.of.my.tongue/video/7703415233473219854"
+},
+{
+  name:"Ben",                      // TODO: add last name
+  role:"Researcher",
+  photo:"",                        // TODO: add a photo URL (initials show until then)
+  cv:"",
+  summary:"Ben shares his research in a five-minute interview.",   // TODO: describe his research
+  drive:"https://drive.google.com/file/d/1sCyoTxtbi6xVSW7V377zwHNw-PzLlkrp/view?usp=sharing"
 }
 ];
+
+function createDriveEmbed(url){
+  var m=url.match(/\/d\/([\w-]+)/);if(!m)return null;
+  var f=document.createElement("div");f.className="frame long";
+  var i=document.createElement("iframe");
+  i.src="https://drive.google.com/file/d/"+m[1]+"/preview";
+  i.title="Video interview";i.loading="lazy";i.allowFullscreen=true;
+  i.setAttribute("allow","autoplay; fullscreen");
+  f.appendChild(i);return f;
+}
 
 function createYoutubeEmbed(url){
   var id=vidId("youtube",url);if(!id)return null;
@@ -193,7 +223,7 @@ function createTiktokEmbed(url){
   b.style.maxWidth="325px";
   b.style.minWidth="325px";
   var s=document.createElement("section");
-  s.innerHTML='<a target="_blank" href="'+url+'">@tip.of.my.tongue</a>';
+  s.innerHTML='<a target="_blank" rel="noopener" href="'+url+'">Watch on TikTok</a>';
   b.appendChild(s);
   wrap.appendChild(b);
   return wrap;
@@ -203,19 +233,22 @@ var sp=document.getElementById("spots");sp.textContent="";
 SPOTLIGHTS.forEach(function(s){
   var a=document.createElement("article");a.className="spot";
   
-  var ph=document.createElement("img");
-  ph.src=s.photo;
-  ph.alt="Photo of "+s.name;
-  ph.className="photo";
-  
-  ph.onerror = function() {
-    var fallback = document.createElement("div");
-    fallback.className = "photo-fallback";
-    fallback.textContent = s.name.split(" ").map(function(w){return w[0];}).join("").slice(0,2).toUpperCase();
-    ph.replaceWith(fallback);
-  };
-  
-  a.appendChild(ph);
+  function initials(){
+    var fallback=document.createElement("div");
+    fallback.className="photo-fallback";
+    fallback.textContent=s.name.split(" ").map(function(w){return w[0];}).join("").slice(0,2).toUpperCase();
+    return fallback;
+  }
+  if(s.photo){
+    var ph=document.createElement("img");
+    ph.src=s.photo;
+    ph.alt="Photo of "+s.name;
+    ph.className="photo";
+    ph.onerror=function(){ph.replaceWith(initials());};
+    a.appendChild(ph);
+  }else{
+    a.appendChild(initials());
+  }
 
   var content=document.createElement("div");
   content.className="spot-content";
@@ -228,10 +261,13 @@ SPOTLIGHTS.forEach(function(s){
   var videoBox=document.createElement("div");
   videoBox.className="video-container";
 
-  var yt=createYoutubeEmbed(s.youtube);
+  var yt=s.youtube&&createYoutubeEmbed(s.youtube);
   if(yt) videoBox.appendChild(yt);
 
-  var tt=createTiktokEmbed(s.tiktok);
+  var dr=s.drive&&createDriveEmbed(s.drive);
+  if(dr) videoBox.appendChild(dr);
+
+  var tt=s.tiktok&&createTiktokEmbed(s.tiktok);
   if(tt) videoBox.appendChild(tt);
 
   a.appendChild(videoBox);
@@ -243,7 +279,7 @@ if(window.tiktokEmbed) window.tiktokEmbed.lib.render();
 var words=["tongue","lengua","langue","Zunge","lingua","舌"],i=0,b=document.getElementById("blank");
 b.addEventListener("click",function(){i=(i+1)%words.length;b.textContent=words[i];});
 
-var HOSTLINKS={"colin-cv":"https://drive.google.com/file/d/1mZxpVw9hMC7sslplfqGJv6cruxG9TnY7/view?usp=sharing","colin-orcid":"https://orcid.org/0009-0003-5155-4812","aj-cv":"","aj-orcid":""};
+var HOSTLINKS={"colin-cv":"https://drive.google.com/file/d/1mZxpVw9hMC7sslplfqGJv6cruxG9TnY7/view?usp=sharing","colin-portfolio":"https://colinandrewscholl-jpg.github.io/","colin-orcid":"https://orcid.org/0009-0003-5155-4812","aj-cv":"","aj-orcid":""};
 document.querySelectorAll("[data-link]").forEach(function(a){
 var u=HOSTLINKS[a.dataset.link];
 if(u){a.href=u;a.target="_blank";a.rel="noopener";}
