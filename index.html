@@ -278,7 +278,7 @@ if(window.tiktokEmbed) window.tiktokEmbed.lib.render();
 var words=["tongue","lengua","langue","Zunge","lingua","舌"],i=0,b=document.getElementById("blank");
 b.addEventListener("click",function(){i=(i+1)%words.length;b.textContent=words[i];});
 
-var HOSTLINKS={"colin-cv":"https://drive.google.com/file/d/1mZxpVw9hMC7sslplfqGJv6cruxG9TnY7/view?usp=sharing","colin-portfolio":"https://colinandrewscholl-jpg.github.io/","colin-orcid":"https://orcid.org/0009-0003-5155-4812","aj-cv":"","aj-orcid":""};
+var HOSTLINKS={"colin-cv":"https://drive.google.com/file/d/1mZxpVw9hMC7sslplfqGJv6cruxG9TnY7/view?usp=sharing","colin-portfolio":"https://colinandrewscholl-jpg.github.io/Website/","colin-orcid":"https://orcid.org/0009-0003-5155-4812","aj-cv":"","aj-orcid":""};
 document.querySelectorAll("[data-link]").forEach(function(a){
 var u=HOSTLINKS[a.dataset.link];
 if(u){a.href=u;a.target="_blank";a.rel="noopener";}
